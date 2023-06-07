@@ -15,7 +15,9 @@ function App() {
       if (value != "") {
         setLoading(true);
         axios
-          .get(`http://localhost:8080/list?_limit=10`)
+          .get(
+            `https://live-search-data.onrender.com/list?_limit=10&q=${search}`
+          )
           .then((res) => {
             setData(res.data);
             setLoading(false);
@@ -47,15 +49,6 @@ function App() {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    let filtered = [];
-    for (let i = 0; i <= data.length - 1; i++) {
-      let ele = data[i];
-      if (ele[i].country == search) {
-        filtered.push(ele);
-      }
-    }
-    console.log(filtered);
-    // setNewData(filtered);
   };
   // console.log(newData);
 
